@@ -1,8 +1,10 @@
+import 'dart:ui' as prefix0;
+
 import 'package:flutter/material.dart';
 
-void main() => runApp(Myapp());
+void main()=> runApp(My_app());
 
-class Myapp extends StatelessWidget{
+class My_app extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -11,44 +13,50 @@ class Myapp extends StatelessWidget{
       title: "My app",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("My Title"),
-        ),
-        body: Container(
-          child: Center(
-            child: Text("My Page"),
-          ),
+          title: Text("My App"),
+          backgroundColor: Colors.deepOrange,
         ),
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
               DrawerHeader(
-                curve: Curves.bounceIn,
-                child: Text("My Drawer"),
+                child: Container(
+              child: Column(
+              children: <Widget>[
+                Material(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset('images/me.jpg',width: 100.0, height: 100.0,),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(70.0)),
+                ),
+
+                Container(
+                  height: 2.0,
+                ),
+
+                Text("Dipesh Neupane",
+                style: TextStyle(
+                  fontSize: 15.0,
+                  fontWeight: FontWeight.w700,
+                ),)
+            ],
+          ),
+          ),
                 decoration: BoxDecoration(
-                  color: Colors.blue,
-                  border: Border.all(
-                    width: 5.0,
-                    color: Colors.blueAccent,
-
-                  )
+                  gradient: LinearGradient(colors: <Color>[
+                    Colors.deepOrange,
+                    Colors.orange,
+                  ]
+                  ),
                 ),
               ),
-                RaisedButton(
-                child: ListTile(
-                  leading: Icon(Icons.add),
-                  title: Text("Add More"),
-                  subtitle: Text("Add note"),
-                  trailing: Icon(Icons.delete),
-                ),
-                  onPressed: (){},
-              ),
 
-              ListTile(
-                leading: Icon(Icons.add),
-                title: Text("Add More"),
-                subtitle: Text("Add note"),
-                trailing: Icon(Icons.delete),
-              )
+              CustumListTile(Icons.perm_identity, "About", ()=>{}),
+              CustumListTile(Icons.whatshot, "Skills", ()=> {}),
+              CustumListTile(Icons.work, "Portfilo", ()=>{}),
+              CustumListTile(Icons.book, "Resume", ()=>{}),
+              CustumListTile(Icons.contacts,"Contact", ()=>{}),
             ],
           ),
         ),
@@ -56,3 +64,45 @@ class Myapp extends StatelessWidget{
     );
   }
 }
+
+class CustumListTile extends StatelessWidget{
+  String text;
+  Function ontap;
+  IconData icon;
+  CustumListTile(this.icon, this.text, this.ontap);
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+        ),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: InkWell(
+          splashColor: Colors.orangeAccent,
+          onTap:ontap,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                Icon(icon),
+                Container(width: 5.0,),
+                Text(text,
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
