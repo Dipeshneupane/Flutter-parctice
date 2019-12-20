@@ -26,7 +26,7 @@ class My_app extends StatelessWidget{
                 Material(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('images/me.jpg',width: 100.0, height: 100.0,),
+                    child: My_image(),
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(70.0)),
                 ),
@@ -60,6 +60,7 @@ class My_app extends StatelessWidget{
             ],
           ),
         ),
+        body: My_body(),
       )
     );
   }
@@ -106,3 +107,30 @@ class CustumListTile extends StatelessWidget{
   }
 }
 
+class My_body extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/me.jpg');
+    Image image = Image(image: assetImage,
+    fit: BoxFit.fill,);
+
+    return Container(child: image,);
+  }
+
+}
+
+
+class My_image extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    {
+      AssetImage assetImage = AssetImage('images/me.jpg');
+      Image image = Image(image: assetImage,
+      fit: BoxFit.fill,);
+
+      return Container(child: image,);
+    }
+  }
+
+}
